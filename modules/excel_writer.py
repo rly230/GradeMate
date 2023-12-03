@@ -1,34 +1,23 @@
 import pandas as pd
+import os
 from openpyxl import load_workbook
 
 
-def write_to_excel(grading_data, file_name, sheet_name):
+def write_to_excel(df, file_name):
     """
-    採点結果をExcelファイルに書き込む。
+    データフレームをExcelファイルに書き込む。
 
-    :param grading_data: 学籍番号と採点結果を含む辞書。
+    :param df: 書き込むデータフレーム。
     :param file_name: Excelファイルの名前。
-    :param sheet_name: シートの名前。
     """
-    df = pd.DataFrame(list(grading_data.items()), columns=["Student ID", "Score"])
-
     try:
-        # 既存のExcelファイルにアクセス
-        book = load_workbook(file_name)
-        with pd.ExcelWriter(file_name, engine="openpyxl", mode="a") as writer:
-            # 既存のシートに追記
-            if sheet_name in book.sheetnames:
-                startrow = book[sheet_name].max_row
-            else:
-                startrow = 0
-            df.to_excel(
-                writer,
-                sheet_name=sheet_name,
-                index=False,
-                header=False,
-                startrow=startrow,
-            )
-            # writer.save() の呼び出しは不要
-    except FileNotFoundError:
-        # ファイルが存在しない場合は新規作成
-        df.to_excel(file_name, sheet_name=sheet_name, index=False)
+        # ファイルが存在するかチェックし、必要に応じて新規作成
+        if not os.path.exists(file_name):
+            df.to_excel(file_name, index=False)
+        else:
+            book = load_workbook(file_name)
+            with pd.ExcelWriter(file_name, engine="openpyxl", mode="a") as writer:
+                writer.book = book
+                df.to_excel(writer, index=False, header=False)
+    except Exception as e:
+        print(f"Error writing to Excel file {file_name}: {e}")

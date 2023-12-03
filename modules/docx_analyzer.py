@@ -13,8 +13,8 @@ def analyze_docx(file_path):
         text = [p.text for p in doc.paragraphs if p.text.strip()]
         if not text:
             return None  # ファイルが空の場合
-        elif is_text_length_appropriate(text, 10, 100000):
-            return 1  # 内容が不十分な場合
+        # elif is_text_length_appropriate(text, 10, 100000):
+        #     return 1  # 内容が不十分な場合
         else:
             return 3  # 内容が適切な場合
     except Exception as e:
