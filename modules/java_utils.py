@@ -19,7 +19,7 @@ def add_package_name(directory_path):
                     stu_folder_name = os.path.basename(subdir)
 
                     # Javaファイルを読み込み、既存のpackage宣言を削除
-                    with open(file_path, "r") as file:
+                    with open(file_path, "r", encoding='utf-8') as file:
                         lines = file.readlines()
                     lines = [
                         line
@@ -34,7 +34,7 @@ def add_package_name(directory_path):
                     lines.insert(0, package_declaration)
 
                     # ファイルに書き戻す
-                    with open(file_path, "w") as file:
+                    with open(file_path, "w", encoding='utf-8') as file:
                         file.writelines(lines)
 
         print("Add 'package': " + class_)
