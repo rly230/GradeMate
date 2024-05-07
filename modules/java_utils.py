@@ -15,26 +15,26 @@ def add_package_name(directory_path):
             for file in files:
                 if file.endswith(".java"):
                     file_path = os.path.join(subdir, file)
-                    class_path_name = os.path.basename(class_path)
-                    stu_folder_name = os.path.basename(subdir)
+                    dir_path = subdir.replace("\\", ".")
 
                     # Javaファイルを読み込み、既存のpackage宣言を削除
-                    with open(file_path, "r", encoding='utf-8') as file:
-                        lines = file.readlines()
-                    lines = [
-                        line
-                        for line in lines
-                        if not line.strip().startswith("package ")
-                    ]
+                    try:
+                        with open(file_path, "r", encoding="utf-8") as file:
+                            lines = file.readlines()
+                        lines = [
+                            line
+                            for line in lines
+                            if not line.strip().startswith("package ")
+                        ]
+                    except UnicodeDecodeError as e:
+                        print(f"{e}: {class_path}")
 
                     # 新しいpackage宣言を追加
-                    package_declaration = (
-                        f"package {class_path_name}.{stu_folder_name};\n"
-                    )
+                    package_declaration = f"package {dir_path};\n"
                     lines.insert(0, package_declaration)
 
                     # ファイルに書き戻す
-                    with open(file_path, "w", encoding='utf-8') as file:
+                    with open(file_path, "w", encoding="utf-8") as file:
                         file.writelines(lines)
 
         print("Add 'package': " + class_)
