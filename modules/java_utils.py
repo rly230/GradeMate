@@ -15,7 +15,6 @@ def add_package_name(directory_path):
             for file in files:
                 if file.endswith(".java"):
                     file_path = os.path.join(subdir, file)
-                    dir_path = subdir.replace("\\", ".")
 
                     # Javaファイルを読み込み、既存のpackage宣言を削除
                     try:
@@ -30,8 +29,10 @@ def add_package_name(directory_path):
                         print(f"{e}: {class_path}")
 
                     # 新しいpackage宣言を追加
-                    package_declaration = f"package {dir_path};\n"
-                    lines.insert(0, package_declaration)
+                    package_str = subdir.replace("\\", ".")
+                    package_str = package_str.replace("data.", "")
+                    package_str = f"package {package_str};\n"
+                    lines.insert(0, package_str)
 
                     # ファイルに書き戻す
                     with open(file_path, "w", encoding="utf-8") as file:
