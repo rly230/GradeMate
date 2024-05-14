@@ -2,8 +2,9 @@ import modules
 
 
 def main():
-    modules.rename_folders_recursively("data")
-    modules.add_package_name("data")
+    target_path = "data"
+    modules.rename_folders_recursively(target_path)
+    modules.add_package_name(target_path)
 
 
 if __name__ == "__main__":

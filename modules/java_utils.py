@@ -29,8 +29,8 @@ def add_package_name(directory_path):
                         print(f"{e}: {class_path}")
 
                     # 新しいpackage宣言を追加
-                    package_str = subdir.replace("\\", ".")
-                    package_str = package_str.replace("data.", "")
+                    package_str = subdir.replace(f"{directory_path}\\", "")
+                    package_str = package_str.replace("\\", ".")
                     package_str = f"package {package_str};\n"
                     lines.insert(0, package_str)
 
