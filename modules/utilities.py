@@ -74,19 +74,30 @@ def add_prefix_if_numeric(folder_name, prefix="a_"):
         return folder_name
 
 
+def sanitize_folder_name(folder_name):
+    """
+    フォルダ名に使うべきでない文字が含まれていたら'_'に置換
+    """
+    pattern = r'[\\/:*?"<>|.]'
+    sanitized_name = re.sub(pattern, "_", folder_name)
+    return sanitized_name.strip()
+
+
 def rename_folders_recursively(root_folder, prefix="a"):
     """
     再帰的にフォルダ内を探索し、以下の処理を行う
     ・フォルダ名中の日本語をローマ字に変更
     ・フォルダ名の頭に数値がある場合、適当な文字列をくっつける
+    ・不適切なフォルダ名を修正
     """
-    for foldername in os.listdir(root_folder):
-        folder_path = os.path.join(root_folder, foldername)
+    for folder_name in os.listdir(root_folder):
+        folder_path = os.path.join(root_folder, folder_name)
         if os.path.isdir(folder_path):
             # フォルダの場合は再帰的に処理を行う
             rename_folders_recursively(folder_path)
             # フォルダ名を変換する
-            foldername = convert_folder_name(foldername)
-            foldername = add_prefix_if_numeric(foldername, prefix)
-            new_folder_path = os.path.join(root_folder, foldername)
+            folder_name = convert_folder_name(folder_name)
+            folder_name = add_prefix_if_numeric(folder_name, prefix)
+            folder_name = sanitize_folder_name(folder_name)
+            new_folder_path = os.path.join(root_folder, folder_name)
             os.rename(folder_path, new_folder_path)
