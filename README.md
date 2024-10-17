@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/badge/python-3.11-blue)
+
 # GradeMate
 副手採点業務補助システム
 ## できること
@@ -71,5 +73,5 @@ pip install -r requirements.txt
 
 ## DBの自動採点
 ### できること
-- docxファイルの自動採点
+- docxファイルが提出されていれば3点
 - excelファイルへの自動一括出力
