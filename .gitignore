@@ -161,4 +161,11 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+# mac
 .DS_STORE
+
+# dataフォルダ内の全てのファイルを無視
+data/*
+
+# ただし、.gitkeepファイルは無視しない
+!data/.gitkeep
