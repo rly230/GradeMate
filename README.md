@@ -1,11 +1,15 @@
-# compass
+# GradeMate
 副手採点業務補助システム
-## javaファイル採点の前処理
+## できること
+- 採点するjavaファイルのpackage宣言を適切なものに一括変更
+- DB授業課題の自動採点
+
+## javaファイルのpackage宣言一括変更
 ### できること
-- 指定フォルダ内を再帰的に探索し、なんやかんやで適切なものに一括変更
-- javaファイル内のpackageに関する記述の一括変更  
-  → 既存のpackageについての記述の削除  
-  → 授業フォルダをそのままIDEに入れるだけで動かせるようにjavaファイルのpackage宣言を変更
+- 指定フォルダ内を再帰的に探索し、適切なフォルダ名に一括変更
+- javaファイル内のpackageに関する記述の一括変更 　
+  → 既存のpackage記述の削除  
+  → 授業フォルダをそのままIDEに入れるだけでjavaファイルを動かせるようにpackage宣言を変更
 ### 使い方
 1. python環境の構築
 - (mac/venvの例)  
@@ -37,12 +41,6 @@ python -m venv [YOUR_ENV_NAME]
 [YOUR_ENV_NAME]\Scripts\activate.bat
 ```
 2. データの用意
-採点対象のフォルダを用意してね．
-- /compassに`data`フォルダを用意
-```shell
-cd path/to/compass
-mkdir data
-```
 - dataの中に"第01回"の形式のフォルダを全部入れてね．
 3. スクリプトの実行
 ```py
