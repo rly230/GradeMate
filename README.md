@@ -46,7 +46,7 @@ mkdir data
 - dataの中に"第01回"の形式のフォルダを全部入れてね．
 3. スクリプトの実行
 ```py
-python3 GUI_preparetion.py
+python3 rename_java_package.py
 ```
 4. dataフォルダを見てごらんなさい...
 
