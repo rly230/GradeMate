@@ -4,6 +4,7 @@ import modules
 def main():
     directory_path = "data"
     modules.rename_folders_recursively(directory_path)
+    modules.find_duplicates(directory_path)
     modules.add_package_name(directory_path)
 
 
