@@ -1,5 +1,6 @@
 import os
 import re
+import hashlib
 
 
 def read_java_file(file_path):
@@ -53,3 +54,35 @@ def add_package_name(directory_path):
                     process_java_file(file_path, package_statement)
 
         print(f"Added 'package' to: {class_}")
+
+
+def calculate_md5(file_path):
+    """指定されたファイルのMD5ハッシュを計算する"""
+    hash_md5 = hashlib.md5()
+    with open(file_path, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            hash_md5.update(chunk)
+    return hash_md5.hexdigest()
+
+
+def find_duplicates(directory_path):
+    """ディレクトリ内の.javaファイルの中で、MD5ハッシュが一致するファイルを探す"""
+    md5_dict = {}
+    duplicates = []
+
+    for subdir, dirs, files in os.walk(directory_path):
+        for file in files:
+            if file.endswith(".java"):
+                file_path = os.path.join(subdir, file)
+                file_md5 = calculate_md5(file_path)
+
+                if file_md5 in md5_dict:
+                    original_file = md5_dict[file_md5]
+                    print(f"コピーが疑われるファイルA: {original_file}")
+                    print(f"コピーが疑われるファイルB: {file_path}")
+                    duplicates.append((original_file, file_path))
+                else:
+                    md5_dict[file_md5] = file_path
+
+    if not duplicates:
+        print("コピーが疑われるファイルはありませんでした。")
