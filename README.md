@@ -20,7 +20,8 @@
   → 既存のpackage記述の削除  
   → 授業フォルダをそのままIDEに入れるだけでjavaファイルを動かせるようにpackage宣言を変更
 ### 使い方
-1. python環境の構築
+1. python環境の構築  
+[pythonのダウンロードはコチラ](https://www.python.org/downloads/)
 - (mac/venvの例)  
 `[YOUR_ENV_NAME]`←好きな名前をつけてね！
 ```shell
@@ -53,7 +54,7 @@ python -m venv [YOUR_ENV_NAME]
 - dataの中に"第01回"の形式のフォルダを全部入れてね．
 3. スクリプトの実行
 ```py
-python3 rename_java_package.py
+python3 java_setup.py
 ```
 4. dataフォルダを見てごらんなさい...
 
