@@ -2,7 +2,7 @@ import os
 import re
 
 
-def is_lesson_directory(path):
+def is_lesson_directory(path) -> bool:
     """
     パスが「第n回」の形式を持つ授業回数のディレクトリであるかを確認する。
 
@@ -13,7 +13,7 @@ def is_lesson_directory(path):
     return re.search(pattern, path) is not None
 
 
-def explore_directory(base_path):
+def explore_directory(base_path) -> dict:
     """
     指定されたpath内を探索し、すべての授業回数について学生の提出ファイル情報を収集する。
 
@@ -35,7 +35,7 @@ def explore_directory(base_path):
     return lesson_data
 
 
-def find_docx_file(student_path):
+def find_docx_file(student_path) -> os.path:
     """
     指定された学生のフォルダ内に.docxファイルが存在するかチェックする。
 

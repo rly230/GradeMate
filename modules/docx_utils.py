@@ -1,7 +1,7 @@
 from docx import Document
 
 
-def analyze_docx(file_path):
+def scoring_docx(file_path) -> int:
     """
     .docxファイルを解析し、内容が適切かどうかをチェックする。
 
@@ -22,7 +22,7 @@ def analyze_docx(file_path):
         return None  # ファイルを開けない場合
 
 
-def is_text_length_appropriate(text_list, min_length, max_length):
+def is_text_length_appropriate(text_list, min_length, max_length) -> bool:
     """
     テキストのリストが指定された長さの基準を満たしているかどうかを判断する。
 
