@@ -83,7 +83,7 @@ def sanitize_folder_name(folder_name):
     return sanitized_name.strip()
 
 
-def rename_folders_recursively(root_folder, prefix="a"):
+def rename_folders(root_folder, prefix="a"):
     """
     再帰的にフォルダ内を探索し、以下の処理を行う
     ・フォルダ名中の日本語をローマ字に変更
@@ -94,7 +94,7 @@ def rename_folders_recursively(root_folder, prefix="a"):
         folder_path = os.path.join(root_folder, folder_name)
         if os.path.isdir(folder_path):
             # フォルダの場合は再帰的に処理を行う
-            rename_folders_recursively(folder_path)
+            rename_folders(folder_path)
             # フォルダ名を変換する
             folder_name = convert_folder_name(folder_name)
             folder_name = add_prefix_if_numeric(folder_name, prefix)

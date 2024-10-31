@@ -3,7 +3,7 @@ import re
 import hashlib
 
 
-def read_java_file(file_path):
+def delete_package(file_path):
     """Javaファイルを読み込んで、既存のpackage宣言を削除する"""
     try:
         with open(file_path, "r", encoding="utf-8") as file:
@@ -30,14 +30,14 @@ def generate_package_statement(root_path, subdir):
 
 def process_java_file(file_path, package_statement):
     """Javaファイルにpackage宣言を追加して、ファイルに書き戻す"""
-    lines = read_java_file(file_path)
+    lines = delete_package(file_path)
     if lines is None:
         return
     lines.insert(0, package_statement)
     write_java_file(file_path, lines)
 
 
-def add_package_name(directory_path):
+def add_package(directory_path):
     """ディレクトリ内の全ての.javaファイルにpackage宣言を追加する"""
     for class_ in os.listdir(directory_path):
         class_path = os.path.join(directory_path, class_)
@@ -56,7 +56,7 @@ def add_package_name(directory_path):
         print(f"Added 'package' to: {class_}")
 
 
-def calculate_md5(file_path):
+def calculate_md5(file_path) -> str:
     """指定されたファイルのMD5ハッシュを計算する"""
     hash_md5 = hashlib.md5()
     with open(file_path, "rb") as f:
@@ -65,7 +65,7 @@ def calculate_md5(file_path):
     return hash_md5.hexdigest()
 
 
-def find_duplicates(directory_path):
+def find_copyfile(directory_path):
     """ディレクトリ内の.javaファイルの中で、MD5ハッシュが一致するファイルを探す"""
     md5_dict = {}
     duplicates = []

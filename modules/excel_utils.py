@@ -3,7 +3,7 @@ import os
 from openpyxl import load_workbook
 
 
-def write_to_excel(df, file_name):
+def df_to_excel(df, file_name) -> None:
     """
     データフレームをExcelファイルに書き込む。
 
@@ -11,7 +11,7 @@ def write_to_excel(df, file_name):
     :param file_name: Excelファイルの名前。
     """
     try:
-        # ファイルが存在するかチェックし、必要に応じて新規作成
+        # ファイルが存在するかチェックし、存在しなければ新規作成
         if not os.path.exists(file_name):
             df.to_excel(file_name, index=False)
         else:
@@ -21,3 +21,4 @@ def write_to_excel(df, file_name):
                 df.to_excel(writer, index=False, header=False)
     except Exception as e:
         print(f"Error writing to Excel file {file_name}: {e}")
+
