@@ -24,7 +24,7 @@
 - excelファイルへの自動一括出力
 
 
-### 使い方
+# 使い方
 1. python環境の構築  
 [pythonのダウンロードはコチラ](https://www.python.org/downloads/)
 - (mac/venvの例)  
@@ -56,7 +56,7 @@ python -m venv [YOUR_ENV_NAME]
 [YOUR_ENV_NAME]\Scripts\activate.bat
 ```
 2. データの用意
-- dataの中に"第01回"の形式のフォルダを全部入れてね．
+- dataの中に"第01回"の形式のフォルダを入れてね．
 3. スクリプトの実行
 ```py
 python3 java_setup.py
